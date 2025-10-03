@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-   output: 'export',
+  output: 'export',
   distDir: 'out',
-    basePath: '/dev-ty',     // repo name, no trailing slash
-    assetPrefix: '/dev-ty/', // ensures assets load from repo path
+  basePath: '/tyy-dev-portfolio',     // repo name, no trailing slash
+  assetPrefix: '/tyy-dev-portfolio/', // ensures assets load from repo path
   images: {
     unoptimized: true,
   },
