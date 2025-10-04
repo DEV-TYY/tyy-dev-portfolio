@@ -6,16 +6,12 @@ import { SliceZone } from "@prismicio/react";
 
 import { components } from "../../slices";
 
-type SearchParams = {
-  state?: string;
-};
-
 export default function SliceSimulatorPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams?: { state?: string };
 }) {
-  const { state } = searchParams;
+  const { state } = searchParams ?? {};
   const slices = getSlices(state);
 
   return (
