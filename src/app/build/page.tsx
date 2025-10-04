@@ -19,9 +19,12 @@ type SearchParams = {
 };
 
 export default async function Page(props: {
-  searchParams: SearchParams | undefined;
+  // keep the type compatible with Next's PageProps which may annotate
+  // `searchParams` as a Promise. We avoid `await` to prevent static-gen bailout,
+  // but cast at runtime so we can read the object synchronously.
+  searchParams: Promise<SearchParams> | SearchParams | undefined;
 }) {
-  const searchParams = props.searchParams ?? {};
+  const searchParams = (props.searchParams as unknown as SearchParams) ?? {};
 
   const client = createClient();
   const customizerSettings = await client.getSingle("board_customizer");
