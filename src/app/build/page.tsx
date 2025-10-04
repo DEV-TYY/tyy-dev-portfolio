@@ -6,7 +6,6 @@ import React from "react";
 
 import { CustomizerControlsProvider } from "./context";
 import { createClient } from "@/prismicio";
-import Preview from "./Preview";
 import { asImageSrc } from "@prismicio/client";
 import Controls from "./Controls";
 import Loading from "./Loading";
@@ -55,12 +54,6 @@ export default async function Page(props: {
         defaultBolt={defaultBolt}
       >
         <div className="relative aspect-square shrink-0 bg-[#3a414a] lg:aspect-auto lg:grow">
-          <div className="absolute inset-0">
-            <Preview
-              deckTextureURLs={deckTextureURLs}
-              wheelTextureURLs={wheelTextureURLs}
-            />
-          </div>
 
           <Link href="/" className="absolute left-6 top-6">
             <Logo className="h-12 text-white" />
