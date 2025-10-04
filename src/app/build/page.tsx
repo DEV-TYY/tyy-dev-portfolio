@@ -6,7 +6,6 @@ import React from "react";
 
 import { CustomizerControlsProvider } from "./context";
 import { createClient } from "@/prismicio";
-import { asImageSrc } from "@prismicio/client";
 import Controls from "./Controls";
 import Loading from "./Loading";
 
@@ -18,9 +17,6 @@ type SearchParams = {
 };
 
 export default async function Page(props: {
-  // type `searchParams` so it satisfies Next's PageProps constraint (which
-  // expects a Promise-like). Use `unknown` instead of `any` to avoid ESLint
-  // `no-explicit-any` while still allowing a runtime cast below.
   searchParams?: Promise<unknown> | undefined;
 }) {
   const searchParams = (props.searchParams as unknown as SearchParams) ?? {};
@@ -38,13 +34,6 @@ export default async function Page(props: {
   const defaultBolt =
     metals.find((metal) => metal.uid === searchParams.bolt) ?? metals[0];
 
-  const wheelTextureURLs = wheels
-    .map((texture) => asImageSrc(texture.texture))
-    .filter((url): url is string => Boolean(url));
-  const deckTextureURLs = decks
-    .map((texture) => asImageSrc(texture.texture))
-    .filter((url): url is string => Boolean(url));
-
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
       <CustomizerControlsProvider
@@ -54,7 +43,6 @@ export default async function Page(props: {
         defaultBolt={defaultBolt}
       >
         <div className="relative aspect-square shrink-0 bg-[#3a414a] lg:aspect-auto lg:grow">
-
           <Link href="/" className="absolute left-6 top-6">
             <Logo className="h-12 text-white" />
           </Link>
