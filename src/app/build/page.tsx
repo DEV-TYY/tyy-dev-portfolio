@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { ButtonLink } from "@/components/ButtonLink";
 import { Heading } from "@/components/Heading";
 import { Logo } from "@/components/Logo";
