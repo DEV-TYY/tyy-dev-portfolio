@@ -20,9 +20,9 @@ type SearchParams = {
 
 export default async function Page(props: {
   // type `searchParams` so it satisfies Next's PageProps constraint (which
-  // expects a Promise<any> | undefined). We'll cast it to our SearchParams at
-  // runtime to avoid using `await` and triggering a static-generation bailout.
-  searchParams?: Promise<any> | undefined;
+  // expects a Promise-like). Use `unknown` instead of `any` to avoid ESLint
+  // `no-explicit-any` while still allowing a runtime cast below.
+  searchParams?: Promise<unknown> | undefined;
 }) {
   const searchParams = (props.searchParams as unknown as SearchParams) ?? {};
 
