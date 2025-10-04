@@ -19,9 +19,9 @@ type SearchParams = {
 };
 
 export default async function Page(props: {
-  searchParams: Promise<SearchParams>;
+  searchParams: SearchParams | undefined;
 }) {
-  const searchParams = await props.searchParams;
+  const searchParams = props.searchParams ?? {};
 
   const client = createClient();
   const customizerSettings = await client.getSingle("board_customizer");
